@@ -110,8 +110,8 @@ DB_PROD = {
 }
 
 DATABASES = {
-    # 'default': DB_DEBUG if DEBUG else DB_PROD
-    'default': DB_DEBUG
+    'default': DB_DEBUG if DEBUG else DB_PROD
+    # 'default': DB_DEBUG
 }
 
 
