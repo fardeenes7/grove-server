@@ -2,6 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import EventBooking, SponsorshipRequest
+from .emails import EventBookingMail, SponsorshipRequestMail
 
 
 class EventBookingView(APIView):
@@ -19,6 +20,7 @@ class EventBookingView(APIView):
                 time=data['eventStartTime'],
                 company_name=data['companyName'] if 'companyName' in data else None
             )
+            EventBookingMail(data)
             return Response({'message': 'Event enquiry submitted. You will be contacted soon.'}, status=201)
         except Exception as e:
             return Response({'message': f'{str(e)}'}, status=400)
@@ -36,6 +38,7 @@ class SponsorshipRequestView(APIView):
                 email=data['email'],
                 message=data['info']
             )
+            SponsorshipRequestMail(data)
             return Response({'message': 'Sponsorship request created. You will be contacted soon.'}, status=201)
         except Exception as e:
             return Response({'message': f'{str(e)}'}, status=400)

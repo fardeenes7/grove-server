@@ -2,6 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Subscriber
+from .emails import SubscriberMail
 
 
 class SubscriberView(APIView):
@@ -13,6 +14,7 @@ class SubscriberView(APIView):
             else:
                 subscriber = Subscriber(email=email)
                 subscriber.save()
+                SubscriberMail({'email': email})
                 return Response({'message': 'Subscribed successfully!'}, status=201)
         except Exception as e:
             return Response({'message': str(e)}, status=400)
