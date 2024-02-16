@@ -37,7 +37,7 @@ def SponsorshipRequestMail(data):
         'Sponsorship Request',
         message,
         settings.EMAIL_HOST_USER,
-        OWNER_EMAILS,
+        settings.OWNER_EMAILS,
         fail_silently=False
     )
     return True
