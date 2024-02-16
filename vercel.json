@@ -1,8 +1,10 @@
 {
+    "version": 2,
     "builds": [
         {
-            "src": "grove/wsgi.py",
-            "use": "@vercel/python"
+            "src": "projectname/wsgi.py",
+            "use": "@vercel/python",
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
         },
         {
             "src": "build_files.sh",
@@ -14,12 +16,12 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "grove/wsgi.py"
-        },
-        {
             "src": "/static/(.*)",
             "dest": "/static/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "projectname/wsgi.py"
         }
     ]
 }
